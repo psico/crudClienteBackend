@@ -188,6 +188,14 @@ INSERT INTO tipo_telefone(
     id_tipo_telefone, descricao)
 VALUES (3, 'celular');
 
+INSERT INTO usuario(
+    id_usuario, nome, cpf, senha, id_perfil)
+VALUES (1, 'admin', '00000000000', '123456', 1);
+
+INSERT INTO usuario(
+    id_usuario, nome, cpf, senha, id_perfil)
+VALUES (2, 'comum', '11111111111', '123456', 2);
+
 --rollback DROP TABLE pessoa;
 --rollback DROP TABLE perfil;
 --rollback DROP TABLE usuario;
