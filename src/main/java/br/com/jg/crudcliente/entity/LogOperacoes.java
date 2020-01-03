@@ -34,7 +34,6 @@ public class LogOperacoes {
     @Column(name = "id_usuario", nullable = false)
     private long idUsuario;
 
-
     public long getIdLogOperacoes() {
         return idLogOperacoes;
     }

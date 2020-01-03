@@ -18,7 +18,7 @@ public class Email {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
     @Column(name = "id_email")
     @SequenceGenerator(name = "sequenceGenerator")
-    private long id_email;
+    private long idEmail;
 
     @NotNull
     @Column(name = "descricao", nullable = false)
@@ -33,13 +33,12 @@ public class Email {
     @Column(name = "id_usuario", nullable = false)
     private long idUsuario;
 
-
-    public long getId_email() {
-        return id_email;
+    public long getIdEmail() {
+        return idEmail;
     }
 
-    public void setId_email(long id_email) {
-        this.id_email = id_email;
+    public void setIdEmail(long idEmail) {
+        this.idEmail = idEmail;
     }
 
     public String getDescricao() {

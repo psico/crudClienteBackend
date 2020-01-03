@@ -16,20 +16,20 @@ public class TipoTelefone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
-    @Column(name = "tipo_telefone")
+    @Column(name = "id_tipo_telefone")
     @SequenceGenerator(name = "sequenceGenerator")
-    private long tipoTelefone;
+    private long idTipoTelefone;
 
     @NotNull
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    public long getTipoTelefone() {
-        return tipoTelefone;
+    public long getIdTipoTelefone() {
+        return idTipoTelefone;
     }
 
-    public void setTipoTelefone(long tipoTelefone) {
-        this.tipoTelefone = tipoTelefone;
+    public void setIdTipoTelefone(long idTipoTelefone) {
+        this.idTipoTelefone = idTipoTelefone;
     }
 
     public String getDescricao() {

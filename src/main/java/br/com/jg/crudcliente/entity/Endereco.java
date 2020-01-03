@@ -18,7 +18,7 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
     @Column(name = "id_endereco")
     @SequenceGenerator(name = "sequenceGenerator")
-    private long id_endereco;
+    private long idEndereco;
 
     @NotNull
     @Column(name = "cep", nullable = false)
@@ -48,13 +48,12 @@ public class Endereco {
     @Column(name = "id_usuario", nullable = false)
     private long idUsuario;
 
-
-    public long getId_endereco() {
-        return id_endereco;
+    public long getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId_endereco(long id_endereco) {
-        this.id_endereco = id_endereco;
+    public void setIdEndereco(long idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getCep() {

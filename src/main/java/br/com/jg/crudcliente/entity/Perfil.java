@@ -19,18 +19,18 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
     @Column(name = "id_perfil")
     @SequenceGenerator(name = "sequenceGenerator")
-    private long id_perfil;
+    private long idPerfil;
 
     @NotNull
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    public long getId_perfil() {
-        return id_perfil;
+    public long getIdPerfil() {
+        return idPerfil;
     }
 
-    public void setId_perfil(long id_perfil) {
-        this.id_perfil = id_perfil;
+    public void setIdPerfil(long idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
     public String getDescricao() {

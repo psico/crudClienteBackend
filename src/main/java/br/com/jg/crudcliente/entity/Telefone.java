@@ -42,7 +42,6 @@ public class Telefone {
     @Column(name = "id_tipo_telefone", nullable = false)
     private long idTipoTelefone;
 
-
     public long getIdTelefone() {
         return idTelefone;
     }
