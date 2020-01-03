@@ -29,7 +29,10 @@ public class LogOperacoes {
     @Column(name = "data", nullable = false)
     private Date data;
 
-//    private long id_usuario;
+    //@TODO fazer relacionamento de FK futuramente
+    @NotNull
+    @Column(name = "id_usuario", nullable = false)
+    private long idUsuario;
 
 
     public long getIdLogOperacoes() {
@@ -54,5 +57,13 @@ public class LogOperacoes {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

@@ -28,7 +28,10 @@ public class Email {
     @Column(name = "principal", nullable = false)
     private Boolean principal;
 
-//    private long id_usuario;
+    //@TODO fazer relacionamento de FK futuramente
+    @NotNull
+    @Column(name = "id_usuario", nullable = false)
+    private long idUsuario;
 
 
     public long getId_email() {
@@ -53,5 +56,13 @@ public class Email {
 
     public void setPrincipal(Boolean principal) {
         this.principal = principal;
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

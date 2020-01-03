@@ -32,9 +32,15 @@ public class Telefone {
     @Column(name = "telefone", nullable = false)
     private String telefone;
 
-//    private long id_usuario;
+    //@TODO fazer relacionamento de FK futuramente
+    @NotNull
+    @Column(name = "id_usuario", nullable = false)
+    private long idUsuario;
 
-//    private long id_tipo_telefone;
+    //@TODO fazer relacionamento de FK futuramente
+    @NotNull
+    @Column(name = "id_tipo_telefone", nullable = false)
+    private long idTipoTelefone;
 
 
     public long getIdTelefone() {
@@ -67,5 +73,21 @@ public class Telefone {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public long getIdTipoTelefone() {
+        return idTipoTelefone;
+    }
+
+    public void setIdTipoTelefone(long idTipoTelefone) {
+        this.idTipoTelefone = idTipoTelefone;
     }
 }

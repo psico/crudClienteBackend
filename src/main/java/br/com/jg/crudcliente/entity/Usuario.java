@@ -33,7 +33,10 @@ public class Usuario {
     @Column(name = "senha", nullable = false)
     private String senha;
 
-//    private long id_perfil;
+    //@TODO fazer relacionamento de FK futuramente
+    @NotNull
+    @Column(name = "id_perfil", nullable = false)
+    private long idPerfil;
 
     public long getIdUsuario() {
         return idUsuario;
@@ -65,5 +68,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public long getIdPerfil() {
+        return idPerfil;
+    }
+
+    public void setIdPerfil(long idPerfil) {
+        this.idPerfil = idPerfil;
     }
 }

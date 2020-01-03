@@ -43,7 +43,10 @@ public class Endereco {
     @Column(name = "complemento", nullable = false)
     private String complemento;
 
-//    private long id_usuario;
+    //@TODO fazer relacionamento de FK futuramente
+    @NotNull
+    @Column(name = "id_usuario", nullable = false)
+    private long idUsuario;
 
 
     public long getId_endereco() {
@@ -100,5 +103,13 @@ public class Endereco {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
