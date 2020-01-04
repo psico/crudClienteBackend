@@ -1,6 +1,8 @@
 --liquibase formatted sql
 
 --changeset jg:1
+-- CREATE DATABASE "crudClienteCooperSys";
+
 CREATE SEQUENCE perfil_id_perfil_seq;
 
 CREATE TABLE IF NOT EXISTS perfil (
