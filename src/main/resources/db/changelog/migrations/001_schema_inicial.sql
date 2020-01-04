@@ -178,6 +178,10 @@ INSERT INTO perfil(
     id_perfil, descricao)
 VALUES (2, 'comum');
 
+INSERT INTO perfil(
+    id_perfil, descricao)
+VALUES (3, 'cliente');
+
 INSERT INTO tipo_telefone(
     id_tipo_telefone, descricao)
 VALUES (1, 'residencial');
