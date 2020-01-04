@@ -14,6 +14,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import br.com.jg.crudcliente.entity.Usuario;
 import br.com.jg.crudcliente.repository.UsuarioRepository;
 
+@CrossOrigin
 @RestController
 public class UsuarioController {
 
