@@ -41,32 +41,4 @@ public class LogOperacoesController {
     public LogOperacoes Post(@Valid @RequestBody LogOperacoes logOperacoes) {
         return _logOperacoesRepository.save(logOperacoes);
     }
-
-//    @RequestMapping(value = "/logOperacoes/{id}", method = PUT)
-//    public ResponseEntity<LogOperacoes> Put(@PathVariable(value = "id") long id, @Valid @RequestBody LogOperacoes newLogOperacoes) {
-//        Optional<LogOperacoes> oldLogOperacoes = _logOperacoesRepository.findById(id);
-//
-//        if (oldLogOperacoes.isPresent()) {
-//            LogOperacoes logOperacoes = oldLogOperacoes.get();
-//            logOperacoes.setTipoOperacao(newLogOperacoes.getTipoOperacao());
-//            logOperacoes.setData(newLogOperacoes.getData());
-//            logOperacoes.setIdUsuario(newLogOperacoes.getIdUsuario());
-//            _logOperacoesRepository.save(logOperacoes);
-//            return new ResponseEntity<LogOperacoes>(logOperacoes, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-
-//    @RequestMapping(value = "/logOperacoes/{id}", method = DELETE)
-//    public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id) {
-//        Optional<LogOperacoes> logOperacoes = _logOperacoesRepository.findById(id);
-//
-//        if (logOperacoes.isPresent()) {
-//            _logOperacoesRepository.delete(logOperacoes.get());
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
 }
