@@ -216,8 +216,3 @@ INSERT INTO usuario(
 VALUES (2, 'comum', '11111111111', '123456', 2);
 
 ALTER SEQUENCE usuario_id_usuario_seq RESTART WITH 3;
-
-
---rollback DROP TABLE pessoa;
---rollback DROP TABLE perfil;
---rollback DROP TABLE usuario;
