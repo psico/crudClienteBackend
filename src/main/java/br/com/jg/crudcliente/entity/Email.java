@@ -15,9 +15,9 @@ import javax.validation.constraints.NotNull;
 public class Email {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
     @Column(name = "id_email")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "email_id_email_seq")
+    @SequenceGenerator(name = "email_id_email_seq", sequenceName = "email_seq")
     private long idEmail;
 
     @NotNull

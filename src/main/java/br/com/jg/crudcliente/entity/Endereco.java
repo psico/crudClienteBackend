@@ -15,9 +15,9 @@ import javax.validation.constraints.NotNull;
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
     @Column(name = "id_endereco")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "endereco_id_endereco_seq")
+    @SequenceGenerator(name = "endereco_id_endereco_seq", sequenceName = "endereco_seq")
     private long idEndereco;
 
     @NotNull

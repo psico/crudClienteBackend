@@ -16,9 +16,9 @@ import java.util.Date;
 public class LogOperacoes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sequenceGenerator")
     @Column(name = "id_log_operacoes")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_operacoes_id_log_operacoes_seq")
+    @SequenceGenerator(name = "log_operacoes_id_log_operacoes_seq", sequenceName = "log_operacoes_seq")
     private long idLogOperacoes;
 
     @NotNull
