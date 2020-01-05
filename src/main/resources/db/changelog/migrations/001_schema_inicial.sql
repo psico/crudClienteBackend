@@ -189,7 +189,7 @@ INSERT INTO perfil(
     id_perfil, descricao)
 VALUES (3, 'cliente');
 
-ALTER SEQUENCE perfil_id_perfil_seq RESTART WITH 4;
+ALTER SEQUENCE perfil_id_perfil_seq START WITH 4;
 
 
 INSERT INTO tipo_telefone(
@@ -204,7 +204,7 @@ INSERT INTO tipo_telefone(
     id_tipo_telefone, descricao)
 VALUES (3, 'celular');
 
-ALTER SEQUENCE tipo_telefone_id_tipo_telefone_seq RESTART WITH 4;
+ALTER SEQUENCE tipo_telefone_id_tipo_telefone_seq START WITH 4;
 
 
 INSERT INTO usuario(
@@ -215,4 +215,4 @@ INSERT INTO usuario(
     id_usuario, nome, cpf, senha, id_perfil)
 VALUES (2, 'comum', '11111111111', '123456', 2);
 
-ALTER SEQUENCE usuario_id_usuario_seq RESTART WITH 3;
+ALTER SEQUENCE usuario_id_usuario_seq START WITH 3;
