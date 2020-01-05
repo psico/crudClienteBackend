@@ -1,17 +1,18 @@
 package br.com.jg.crudcliente.controller;
 
-import br.com.jg.crudcliente.entity.Endereco;
-import br.com.jg.crudcliente.repository.EnderecoRepository;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
-
 import static org.springframework.web.bind.annotation.RequestMethod.*;
+
+import br.com.jg.crudcliente.entity.Endereco;
+import br.com.jg.crudcliente.repository.EnderecoRepository;
 
 @CrossOrigin
 @RestController
