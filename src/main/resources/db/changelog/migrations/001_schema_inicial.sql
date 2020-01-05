@@ -189,6 +189,9 @@ INSERT INTO perfil(
     id_perfil, descricao)
 VALUES (3, 'cliente');
 
+ALTER SEQUENCE perfil_id_perfil_seq RESTART WITH 4;
+
+
 INSERT INTO tipo_telefone(
     id_tipo_telefone, descricao)
 VALUES (1, 'residencial');
@@ -201,6 +204,9 @@ INSERT INTO tipo_telefone(
     id_tipo_telefone, descricao)
 VALUES (3, 'celular');
 
+ALTER SEQUENCE tipo_telefone_id_tipo_telefone_seq RESTART WITH 4;
+
+
 INSERT INTO usuario(
     id_usuario, nome, cpf, senha, id_perfil)
 VALUES (1, 'admin', '00000000000', '123456', 1);
@@ -208,6 +214,9 @@ VALUES (1, 'admin', '00000000000', '123456', 1);
 INSERT INTO usuario(
     id_usuario, nome, cpf, senha, id_perfil)
 VALUES (2, 'comum', '11111111111', '123456', 2);
+
+ALTER SEQUENCE usuario_id_usuario_seq RESTART WITH 3;
+
 
 --rollback DROP TABLE pessoa;
 --rollback DROP TABLE perfil;
