@@ -1,5 +1,6 @@
 package br.com.jg.crudcliente.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +45,10 @@ public class EnderecoController {
     @RequestMapping(value = "/endereco", method = POST)
     public Endereco Post(@Valid @RequestBody Endereco endereco) {
         Endereco returnEndereco = _enderecoRepository.save(endereco);
-        LogOperacoes logOperacoes = new LogOperacoes("Insert Endereço", endereco.getIdUsuario());
+        LogOperacoes logOperacoes = new LogOperacoes();
+        logOperacoes.setTipoOperacao("Insert Endereço");
+        logOperacoes.setData(new Date());
+        logOperacoes.setIdUsuario(endereco.getIdUsuario());
         _logOperacoesRepository.save(logOperacoes);
         return returnEndereco;
     }
@@ -73,7 +77,10 @@ public class EnderecoController {
         Optional<Endereco> endereco = _enderecoRepository.findById(id);
 
         if (endereco.isPresent()) {
-            LogOperacoes logOperacoes = new LogOperacoes("Delete Endereço", endereco.get().getIdUsuario());
+            LogOperacoes logOperacoes = new LogOperacoes();
+            logOperacoes.setTipoOperacao("Delete Endereço");
+            logOperacoes.setData(new Date());
+            logOperacoes.setIdUsuario(endereco.get().getIdUsuario());
             _logOperacoesRepository.save(logOperacoes);
 
             _enderecoRepository.delete(endereco.get());

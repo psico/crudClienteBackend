@@ -1,5 +1,6 @@
 package br.com.jg.crudcliente.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +47,10 @@ public class UsuarioController {
     @RequestMapping(value = "/usuario", method = POST)
     public Usuario Post(@Valid @RequestBody Usuario usuario) {
         Usuario returnUsuario = _usuarioRepository.save(usuario);
-        LogOperacoes logOperacoes = new LogOperacoes("Insert Usuario", usuario.getIdUsuario());
+        LogOperacoes logOperacoes = new LogOperacoes();
+        logOperacoes.setTipoOperacao("Insert Usuario");
+        logOperacoes.setData(new Date());
+        logOperacoes.setIdUsuario(usuario.getIdUsuario());
         _logOperacoesRepository.save(logOperacoes);
         return returnUsuario;
     }
@@ -79,8 +83,11 @@ public class UsuarioController {
             List<Telefone> telefoneList = _telefoneRepository.findByIdUsuario(usuario.get().getIdUsuario());
             telefoneList.forEach(telefone -> _telefoneRepository.delete(telefone));
 
-            LogOperacoes logOperacoes = new LogOperacoes("Delete Usuario", usuario.get().getIdUsuario());
-            _logOperacoesRepository.save(logOperacoes);
+            List<LogOperacoes> logOperacoesList = _logOperacoesRepository.findByIdUsuario(usuario.get().getIdUsuario());
+            logOperacoesList.forEach(logOperacoe -> _logOperacoesRepository.delete(logOperacoe));
+
+//            LogOperacoes logOperacoes = new LogOperacoes("Delete Usuario " + usuario.get().getIdUsuario(), 1);
+//            _logOperacoesRepository.save(logOperacoes);
 
             _usuarioRepository.delete(usuario.get());
             return new ResponseEntity<>(HttpStatus.OK);

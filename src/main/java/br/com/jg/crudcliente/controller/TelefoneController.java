@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,10 @@ public class TelefoneController {
     @RequestMapping(value = "/telefone", method = POST)
     public Telefone Post(@Valid @RequestBody Telefone telefone) {
         Telefone returnTelefone = _telefoneRepository.save(telefone);
-        LogOperacoes logOperacoes = new LogOperacoes("Insert Telefone", telefone.getIdUsuario());
+        LogOperacoes logOperacoes = new LogOperacoes();
+        logOperacoes.setTipoOperacao("Insert Telefone");
+        logOperacoes.setData(new Date());
+        logOperacoes.setIdUsuario(telefone.getIdUsuario());
         _logOperacoesRepository.save(logOperacoes);
         return returnTelefone;
     }
@@ -71,7 +75,10 @@ public class TelefoneController {
         Optional<Telefone> telefone = _telefoneRepository.findById(id);
 
         if (telefone.isPresent()) {
-            LogOperacoes logOperacoes = new LogOperacoes("Delete Telefone", telefone.get().getIdUsuario());
+            LogOperacoes logOperacoes = new LogOperacoes();
+            logOperacoes.setTipoOperacao("Delete Telefone");
+            logOperacoes.setData(new Date());
+            logOperacoes.setIdUsuario(telefone.get().getIdUsuario());
             _logOperacoesRepository.save(logOperacoes);
 
             _telefoneRepository.delete(telefone.get());

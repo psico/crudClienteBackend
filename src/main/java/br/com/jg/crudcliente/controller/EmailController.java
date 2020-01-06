@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,10 @@ public class EmailController {
     @RequestMapping(value = "/email", method = POST)
     public Email Post(@Valid @RequestBody Email email) {
         Email returnEmail = _emailRepository.save(email);
-        LogOperacoes logOperacoes = new LogOperacoes("Insert E-mail", email.getIdUsuario());
+        LogOperacoes logOperacoes = new LogOperacoes();
+        logOperacoes.setTipoOperacao("Insert E-mail");
+        logOperacoes.setData(new Date());
+        logOperacoes.setIdUsuario(email.getIdUsuario());
         _logOperacoesRepository.save(logOperacoes);
         return returnEmail;
     }
@@ -68,7 +72,10 @@ public class EmailController {
         Optional<Email> email = _emailRepository.findById(id);
 
         if (email.isPresent()) {
-            LogOperacoes logOperacoes = new LogOperacoes("Delete E-mail", email.get().getIdUsuario());
+            LogOperacoes logOperacoes = new LogOperacoes();
+            logOperacoes.setTipoOperacao("Delete E-mail");
+            logOperacoes.setData(new Date());
+            logOperacoes.setIdUsuario(email.get().getIdUsuario());
             _logOperacoesRepository.save(logOperacoes);
 
             _emailRepository.delete(email.get());
