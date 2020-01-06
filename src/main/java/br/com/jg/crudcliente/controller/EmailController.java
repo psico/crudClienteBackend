@@ -1,7 +1,10 @@
 package br.com.jg.crudcliente.controller;
 
 import br.com.jg.crudcliente.entity.Email;
+import br.com.jg.crudcliente.entity.LogOperacoes;
+import br.com.jg.crudcliente.entity.Usuario;
 import br.com.jg.crudcliente.repository.EmailRepository;
+import br.com.jg.crudcliente.repository.LogOperacoesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,8 @@ public class EmailController {
 
     @Autowired
     private EmailRepository _emailRepository;
+    @Autowired
+    private LogOperacoesRepository _logOperacoesRepository;
 
     @RequestMapping(value = "/email", method = GET)
     public List<Email> Get() {
@@ -37,7 +42,10 @@ public class EmailController {
 
     @RequestMapping(value = "/email", method = POST)
     public Email Post(@Valid @RequestBody Email email) {
-        return _emailRepository.save(email);
+        Email returnEmail = _emailRepository.save(email);
+        LogOperacoes logOperacoes = new LogOperacoes("Insert E-mail", email.getIdUsuario());
+        _logOperacoesRepository.save(logOperacoes);
+        return returnEmail;
     }
 
     @RequestMapping(value = "/email/{id}", method = PUT)
@@ -60,6 +68,9 @@ public class EmailController {
         Optional<Email> email = _emailRepository.findById(id);
 
         if (email.isPresent()) {
+            LogOperacoes logOperacoes = new LogOperacoes("Delete E-mail", email.get().getIdUsuario());
+            _logOperacoesRepository.save(logOperacoes);
+
             _emailRepository.delete(email.get());
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

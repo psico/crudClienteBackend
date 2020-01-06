@@ -1,6 +1,9 @@
 package br.com.jg.crudcliente.controller;
 
+import br.com.jg.crudcliente.entity.LogOperacoes;
 import br.com.jg.crudcliente.entity.Telefone;
+import br.com.jg.crudcliente.entity.Usuario;
+import br.com.jg.crudcliente.repository.LogOperacoesRepository;
 import br.com.jg.crudcliente.repository.TelefoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,8 @@ public class TelefoneController {
 
     @Autowired
     private TelefoneRepository _telefoneRepository;
+    @Autowired
+    private LogOperacoesRepository _logOperacoesRepository;
 
     @RequestMapping(value = "/telefone", method = GET)
     public List<Telefone> Get() {
@@ -37,7 +42,10 @@ public class TelefoneController {
 
     @RequestMapping(value = "/telefone", method = POST)
     public Telefone Post(@Valid @RequestBody Telefone telefone) {
-        return _telefoneRepository.save(telefone);
+        Telefone returnTelefone = _telefoneRepository.save(telefone);
+        LogOperacoes logOperacoes = new LogOperacoes("Insert Telefone", telefone.getIdUsuario());
+        _logOperacoesRepository.save(logOperacoes);
+        return returnTelefone;
     }
 
     @RequestMapping(value = "/telefone/{id}", method = PUT)
@@ -63,6 +71,9 @@ public class TelefoneController {
         Optional<Telefone> telefone = _telefoneRepository.findById(id);
 
         if (telefone.isPresent()) {
+            LogOperacoes logOperacoes = new LogOperacoes("Delete Telefone", telefone.get().getIdUsuario());
+            _logOperacoesRepository.save(logOperacoes);
+
             _telefoneRepository.delete(telefone.get());
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

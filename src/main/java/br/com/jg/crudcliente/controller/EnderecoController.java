@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.jg.crudcliente.entity.LogOperacoes;
+import br.com.jg.crudcliente.entity.Usuario;
+import br.com.jg.crudcliente.repository.LogOperacoesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,8 @@ public class EnderecoController {
 
     @Autowired
     private EnderecoRepository _enderecoRepository;
+    @Autowired
+    private LogOperacoesRepository _logOperacoesRepository;
 
     @RequestMapping(value = "/endereco", method = GET)
     public List<Endereco> Get() {
@@ -38,7 +43,10 @@ public class EnderecoController {
 
     @RequestMapping(value = "/endereco", method = POST)
     public Endereco Post(@Valid @RequestBody Endereco endereco) {
-        return _enderecoRepository.save(endereco);
+        Endereco returnEndereco = _enderecoRepository.save(endereco);
+        LogOperacoes logOperacoes = new LogOperacoes("Insert Endereço", endereco.getIdUsuario());
+        _logOperacoesRepository.save(logOperacoes);
+        return returnEndereco;
     }
 
     @RequestMapping(value = "/endereco/{id}", method = PUT)
@@ -65,6 +73,9 @@ public class EnderecoController {
         Optional<Endereco> endereco = _enderecoRepository.findById(id);
 
         if (endereco.isPresent()) {
+            LogOperacoes logOperacoes = new LogOperacoes("Delete Endereço", endereco.get().getIdUsuario());
+            _logOperacoesRepository.save(logOperacoes);
+
             _enderecoRepository.delete(endereco.get());
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

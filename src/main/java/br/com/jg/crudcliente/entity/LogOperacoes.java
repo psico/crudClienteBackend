@@ -34,6 +34,13 @@ public class LogOperacoes {
     @Column(name = "id_usuario", nullable = false)
     private long idUsuario;
 
+    public LogOperacoes(String tipoOperacao, long idUsuario) {
+        super();
+        this.tipoOperacao = tipoOperacao;
+        this.data = new Date();
+        this.idUsuario = idUsuario;
+    }
+
     public long getIdLogOperacoes() {
         return idLogOperacoes;
     }

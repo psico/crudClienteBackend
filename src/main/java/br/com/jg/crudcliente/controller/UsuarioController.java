@@ -5,20 +5,13 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import br.com.jg.crudcliente.entity.Email;
-import br.com.jg.crudcliente.entity.Endereco;
-import br.com.jg.crudcliente.entity.Telefone;
-import br.com.jg.crudcliente.repository.EmailRepository;
-import br.com.jg.crudcliente.repository.EnderecoRepository;
-import br.com.jg.crudcliente.repository.TelefoneRepository;
+import br.com.jg.crudcliente.entity.*;
+import br.com.jg.crudcliente.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
-
-import br.com.jg.crudcliente.entity.Usuario;
-import br.com.jg.crudcliente.repository.UsuarioRepository;
 
 @CrossOrigin
 @RestController
@@ -26,6 +19,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository _usuarioRepository;
+    @Autowired
+    private LogOperacoesRepository _logOperacoesRepository;
     @Autowired
     private EnderecoRepository _enderecoRepository;
     @Autowired
@@ -50,7 +45,10 @@ public class UsuarioController {
 
     @RequestMapping(value = "/usuario", method = POST)
     public Usuario Post(@Valid @RequestBody Usuario usuario) {
-        return _usuarioRepository.save(usuario);
+        Usuario returnUsuario = _usuarioRepository.save(usuario);
+        LogOperacoes logOperacoes = new LogOperacoes("Insert Usuario", usuario.getIdUsuario());
+        _logOperacoesRepository.save(logOperacoes);
+        return returnUsuario;
     }
 
     @RequestMapping(value = "/usuario/{id}", method = PUT)
@@ -80,6 +78,9 @@ public class UsuarioController {
 
             List<Telefone> telefoneList = _telefoneRepository.findByIdUsuario(usuario.get().getIdUsuario());
             telefoneList.forEach(telefone -> _telefoneRepository.delete(telefone));
+
+            LogOperacoes logOperacoes = new LogOperacoes("Delete Usuario", usuario.get().getIdUsuario());
+            _logOperacoesRepository.save(logOperacoes);
 
             _usuarioRepository.delete(usuario.get());
             return new ResponseEntity<>(HttpStatus.OK);
