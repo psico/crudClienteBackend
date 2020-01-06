@@ -5,6 +5,12 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.jg.crudcliente.entity.Email;
+import br.com.jg.crudcliente.entity.Endereco;
+import br.com.jg.crudcliente.entity.Telefone;
+import br.com.jg.crudcliente.repository.EmailRepository;
+import br.com.jg.crudcliente.repository.EnderecoRepository;
+import br.com.jg.crudcliente.repository.TelefoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +26,12 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository _usuarioRepository;
+    @Autowired
+    private EnderecoRepository _enderecoRepository;
+    @Autowired
+    private EmailRepository _emailRepository;
+    @Autowired
+    private TelefoneRepository _telefoneRepository;
 
     @RequestMapping(value = "/usuario", method = GET)
     public List<Usuario> Get() {
@@ -60,6 +72,15 @@ public class UsuarioController {
         Optional<Usuario> usuario = _usuarioRepository.findById(id);
 
         if (usuario.isPresent()) {
+            List<Email> emailList = _emailRepository.findByIdUsuario(usuario.get().getIdUsuario());
+            emailList.forEach(email -> _emailRepository.delete(email));
+
+            List<Endereco> enderecoList = _enderecoRepository.findByIdUsuario(usuario.get().getIdUsuario());
+            enderecoList.forEach(endereco -> _enderecoRepository.delete(endereco));
+
+            List<Telefone> telefoneList = _telefoneRepository.findByIdUsuario(usuario.get().getIdUsuario());
+            telefoneList.forEach(telefone -> _telefoneRepository.delete(telefone));
+
             _usuarioRepository.delete(usuario.get());
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
