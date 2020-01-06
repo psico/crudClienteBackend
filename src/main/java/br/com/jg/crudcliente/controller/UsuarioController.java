@@ -88,4 +88,26 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value = "/usuario/endereco/{id}", method = GET)
+    public ResponseEntity<Endereco> GetEnderecoById(@PathVariable(value = "id") long id) {
+        Optional<Endereco> endereco = _enderecoRepository.findById(id);
+        if (endereco.isPresent()) {
+            return new ResponseEntity<Endereco>(endereco.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/usuario/telefone/{id}", method = GET)
+    public List<Telefone> GetTelefonesById(@PathVariable(value = "id") long id) {
+        Optional<Usuario> usuario = _usuarioRepository.findById(id);
+        return _telefoneRepository.findByIdUsuario(usuario.get().getIdUsuario());
+    }
+
+    @RequestMapping(value = "/usuario/email/{id}", method = GET)
+    public List<Email> GetEmailsById(@PathVariable(value = "id") long id) {
+        Optional<Usuario> usuario = _usuarioRepository.findById(id);
+        return _emailRepository.findByIdUsuario(usuario.get().getIdUsuario());
+    }
 }
