@@ -209,10 +209,10 @@ ALTER SEQUENCE tipo_telefone_id_tipo_telefone_seq START WITH 4;
 
 INSERT INTO usuario(
     id_usuario, nome, cpf, senha, id_perfil)
-VALUES (1, 'admin', '00000000000', '123456', 1);
+VALUES (999, 'admin', '00000000000', '123456', 1);
 
 INSERT INTO usuario(
     id_usuario, nome, cpf, senha, id_perfil)
-VALUES (2, 'comum', '11111111111', '123456', 2);
+VALUES (998, 'comum', '11111111111', '123456', 2);
 
 ALTER SEQUENCE usuario_id_usuario_seq START WITH 3;
