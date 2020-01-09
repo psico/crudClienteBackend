@@ -59,17 +59,24 @@
 			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
-				<configuration>
-					<propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>update</goal>
-						</goals>
-					</execution>
-				</executions>
+<!--				<configuration>-->
+<!--					<propertyFile>liquibase.properties</propertyFile>-->
+<!--				</configuration>-->
+<!--				<dependencies>-->
+<!--					<dependency>-->
+<!--						<groupId>postgresql</groupId>-->
+<!--						<artifactId>postgresql</artifactId>-->
+<!--						<version>9.1-901-1.jdbc4</version>-->
+<!--					</dependency>-->
+<!--				</dependencies>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>process-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>update</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
 			</plugin>
 		</plugins>
 	</build>
