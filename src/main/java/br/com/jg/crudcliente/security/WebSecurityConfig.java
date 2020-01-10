@@ -14,9 +14,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        //@TODO por enquanto acesso total as requisições, até que o controle de acesso valide registros do BD
         httpSecurity.csrf().disable().authorizeRequests()
+                .antMatchers("/email").permitAll()
+                .antMatchers("/endereco").permitAll()
+                .antMatchers("/logOperacoes").permitAll()
                 .antMatchers("/perfil").permitAll()
-                .antMatchers(HttpMethod.POST, "login").permitAll()
+                .antMatchers("/telefone").permitAll()
+                .antMatchers("/tipoTelefone").permitAll()
+                .antMatchers("/usuario").permitAll()
+//                .antMatchers(HttpMethod.POST, "login").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
