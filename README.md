@@ -1,5 +1,5 @@
 ## Bem-vindo ao projeto de exemplo CRUD Cliente.
-<p align="center">
+<p align="left">
   <a href="https://github.com/psico/ludo-app/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="LudoApp the MIT license." />
   </a>
