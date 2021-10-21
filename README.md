@@ -1,4 +1,12 @@
 ## Bem-vindo ao projeto de exemplo CRUD Cliente.
+<p align="center">
+  <a href="https://github.com/psico/ludo-app/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="LudoApp the MIT license." />
+  </a>
+  <a href="https://github.com/psico/ludo-app">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
+  </a>
+</p>
 
 Este projeto exemplica o uso de uma estrutura REST com REACT, as tecnólogias usadas foram:
 - Banco de dados: PostGreSQL e Power Architect (Modelagem).
